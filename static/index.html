@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minh An AI Sales Agent — Phân tích Yêu cầu & Đề xuất Kinh doanh</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">MA</div>
+        <div>
+          <h1>Minh An AI Sales Agent</h1>
+          <p class="brand-subtitle">Tự động hóa Tiếp nhận Yêu cầu → Hồ sơ Cơ hội → Đề xuất &amp; Bản nháp Phản hồi B2B</p>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="status-pill" id="priceVersionPill">Bảng giá: Đang tải...</span>
+        <span class="status-pill status-pill--accent" id="llmStatusPill">Chế độ: Hybrid Rules</span>
+        <button type="button" class="btn btn-outline btn-sm" id="openAiSettingsBtn">Cấu hình Gemini AI</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav" aria-label="Điều hướng chính">
+    <div class="main-nav-inner">
+      <div class="nav-tabs" role="tablist">
+        <button type="button" class="nav-tab is-active" data-view="workspace" role="tab" aria-selected="true">
+          1. Xử lý Yêu cầu &amp; Kết quả Đề xuất
+        </button>
+        <button type="button" class="nav-tab" data-view="masterdata" role="tab" aria-selected="false">
+          2. Dữ liệu gốc Minh An (Bảng giá, Tồn kho, Chính sách, NVKD)
+        </button>
+      </div>
+      <div class="nav-quick-downloads">
+        <a class="link-btn" href="/api/templates/sample-xlsx" download>Tải mẫu Excel (.xlsx)</a>
+        <a class="link-btn" href="/api/templates/sample-csv" download>Tải mẫu CSV (.csv)</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- VIEW 1: WORKSPACE -->
+    <section id="view-workspace" class="view-section is-active">
+      <!-- INPUT HUB -->
+      <section class="card input-hub">
+        <div class="input-hub-header">
+          <div>
+            <h2>Nguồn Dữ liệu Đầu vào</h2>
+            <p class="muted">Tải lên file <code>.csv</code> / <code>.xlsx</code>, dán link <strong>Google Sheets</strong>, hoặc nhập nhanh yêu cầu văn bản để Agent phân tích ngay.</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="runSampleBtn">
+            Chạy thử Dữ liệu Mẫu Minh An (6 tình huống)
+          </button>
+        </div>
+
+        <div class="input-tabs" role="tablist">
+          <button type="button" class="input-tab is-active" data-input-tab="file" role="tab" aria-selected="true">
+            Tải file .CSV / .XLSX
+          </button>
+          <button type="button" class="input-tab" data-input-tab="gsheet" role="tab" aria-selected="false">
+            Link Google Sheets
+          </button>
+          <button type="button" class="input-tab" data-input-tab="single" role="tab" aria-selected="false">
+            Nhập nhanh 1 Yêu cầu văn bản
+          </button>
+        </div>
+
+        <!-- TAB: FILE UPLOAD -->
+        <div class="input-panel is-active" id="panel-file">
+          <form id="uploadForm" class="upload-area">
+            <label class="dropzone" id="dropzone" for="fileInput">
+              <input type="file" id="fileInput" name="file" accept=".csv,.xlsx,.xlsm" hidden />
+              <div class="dropzone-icon" aria-hidden="true">📄</div>
+              <div class="dropzone-text">
+                <strong>Kéo thả file .csv hoặc .xlsx vào đây</strong> hoặc <span class="text-link">chọn tệp từ máy tính</span>
+              </div>
+              <div class="dropzone-hint" id="selectedFileName">
+                Hỗ trợ file yêu cầu đơn lẻ hoặc workbook Excel nhiều sheet (tự động đồng bộ Danh mục giá, Tồn kho, Chính sách).
+              </div>
+            </label>
+            <div class="form-row-inline">
+              <label class="checkbox-inline">
+                <input type="checkbox" id="syncMasterSheets" checked />
+                <span>Tự động cập nhật Dữ liệu gốc nếu file .xlsx có sheet Danh mục / Tồn kho / Chính sách</span>
+              </label>
+              <button type="submit" class="btn btn-primary" id="uploadSubmitBtn" disabled>
+                Phân tích File đã chọn
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB: GOOGLE SHEETS -->
+        <div class="input-panel" id="panel-gsheet">
+          <form id="gsheetForm" class="gsheet-form">
+            <label for="gsheetUrlInput" class="field-label">Đường dẫn Google Sheets (chế độ chia sẻ xem qua link)</label>
+            <div class="gsheet-row">
+              <input
+                type="url"
+                id="gsheetUrlInput"
+                class="text-input"
+                placeholder="https://docs.google.com/spreadsheets/d/1ABC.../edit#gid=0"
+                required
+              />
+              <button type="submit" class="btn btn-primary" id="gsheetSubmitBtn">
+                Tải &amp; Phân tích Google Sheets
+              </button>
+            </div>
+            <p class="muted small-note">
+              Mẹo: Google Sheets cần bật quyền <em>"Bất kỳ ai có đường liên kết đều có thể xem"</em>. Nếu bảng tính có nhiều tab (Yêu cầu, Danh mục giá, Tồn kho...), hệ thống tự đọc toàn bộ workbook.
+            </p>
+          </form>
+        </div>
+
+        <!-- TAB: SINGLE REQUEST -->
+        <div class="input-panel" id="panel-single">
+          <form id="singleForm" class="single-form">
+            <div class="grid-3">
+              <div>
+                <label for="singleCustomer" class="field-label">Tên Khách hàng / Doanh nghiệp</label>
+                <input type="text" id="singleCustomer" class="text-input" placeholder="VD: Công ty TNHH Công nghệ Việt Phát" />
+              </div>
+              <div>
+                <label for="singleApprover" class="field-label">Người phê duyệt phía KH (nếu có)</label>
+                <input type="text" id="singleApprover" class="text-input" placeholder="Để trống để test cảnh báo thiếu người duyệt" />
+              </div>
+              <div>
+                <label for="singleSource" class="field-label">Kênh tiếp nhận</label>
+                <select id="singleSource" class="text-input">
+                  <option value="Email">Email</option>
+                  <option value="Biểu mẫu Web">Biểu mẫu Web</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="singleRawText" class="field-label">Nội dung yêu cầu khách hàng (văn bản tự do)</label>
+              <textarea
+                id="singleRawText"
+                class="textarea-input"
+                rows="3"
+                placeholder="VD: Bên mình cần 10 Laptop Dell Latitude 5450 (áp giá cũ 23.2 triệu giúp nhé), 2 Firewall FortiGate 60F và 1 Server Dell PowerEdge R760xs. Ngân sách khoảng 450 triệu, giao trong 5 ngày, chiết khấu 8%."
+                required
+              ></textarea>
+            </div>
+            <div class="form-row-inline">
+              <button type="button" class="btn btn-outline btn-sm" id="fillQuickExampleBtn">Điền thử nội dung mẫu</button>
+              <button type="submit" class="btn btn-primary">Chạy Agent Phân tích Yêu cầu này</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="statusBanner" class="alert-banner" hidden></div>
+      </section>
+
+      <!-- WORKFLOW PIPELINE OVERVIEW -->
+      <section class="card workflow-card" id="workflowSection" hidden>
+        <div class="section-header-row">
+          <div>
+            <h2>Luồng Xử lý AI Agent (6 Bước Kiểm soát Đầu-Cuối)</h2>
+            <p class="muted" id="batchSourceMeta"></p>
+          </div>
+          <div class="workflow-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="exportXlsxBtn">
+              Xuất Báo cáo Excel (.xlsx)
+            </button>
+          </div>
+        </div>
+        <div class="workflow-steps" id="workflowStepsGrid"></div>
+      </section>
+
+      <!-- SUMMARY METRICS -->
+      <section class="kpi-grid" id="kpiSection" hidden></section>
+
+      <!-- RESULTS MASTER-DETAIL -->
+      <section class="results-workspace" id="resultsSection" hidden>
+        <!-- LEFT LIST -->
+        <aside class="card results-list-panel">
+          <div class="list-toolbar">
+            <h3>Danh sách Hồ sơ Cơ hội (<span id="filteredCount">0</span>)</h3>
+            <input type="search" id="searchInput" class="text-input input-sm" placeholder="Tìm khách hàng, mã YC, sản phẩm..." />
+            <div class="filter-row">
+              <select id="statusFilter" class="text-input input-sm">
+                <option value="ALL">Tất cả trạng thái duyệt</option>
+                <option value="Tự duyệt (NVKD)">Tự duyệt (NVKD)</option>
+                <option value="Chờ Trưởng phòng KD duyệt">Chờ Trưởng phòng KD duyệt</option>
+                <option value="Chờ Ban Giám đốc duyệt">Chờ Ban Giám đốc duyệt</option>
+                <option value="Chờ KH bổ sung thông tin">Chờ KH bổ sung thông tin</option>
+              </select>
+              <select id="riskFilter" class="text-input input-sm">
+                <option value="ALL">Mọi mức rủi ro</option>
+                <option value="Cao">Rủi ro Cao</option>
+                <option value="Trung bình">Rủi ro Trung bình</option>
+                <option value="Thấp">Rủi ro Thấp</option>
+              </select>
+            </div>
+          </div>
+          <div id="opportunityList" class="opportunity-list" role="listbox" aria-label="Danh sách hồ sơ cơ hội"></div>
+        </aside>
+
+        <!-- RIGHT DETAIL -->
+        <article class="detail-panel" id="detailPanel">
+          <div class="card empty-detail">
+            Chọn một yêu cầu ở danh sách bên trái để xem chi tiết phân tích, hồ sơ cơ hội và bản nháp phản hồi.
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <!-- VIEW 2: MASTER DATA -->
+    <section id="view-masterdata" class="view-section">
+      <div class="card">
+        <div class="section-header-row">
+          <div>
+            <h2>Dữ liệu Gốc Phục vụ AI Agent — Công ty Minh An</h2>
+            <p class="muted">Bao gồm Danh mục sản phẩm &amp; giá hiệu lực, Tồn khả dụng, Thời gian triển khai, Chính sách chiết khấu và Đội ngũ 6 NVKD.</p>
+          </div>
+          <form id="masterUploadForm" class="inline-upload">
+            <input type="file" id="masterFileInput" accept=".csv,.xlsx,.xlsm" hidden />
+            <button type="button" class="btn btn-outline" id="chooseMasterFileBtn">Cập nhật từ .CSV / .XLSX</button>
+          </form>
+        </div>
+
+        <div id="masterUploadBanner" class="alert-banner" hidden></div>
+
+        <div class="master-grid-top" id="policyAndRepsContainer"></div>
+
+        <h3 class="mt-lg">Bảng Danh mục Sản phẩm, Giá hiệu lực, Tồn khả dụng &amp; Thời gian triển khai</h3>
+        <div class="table-scroll">
+          <table class="data-table" id="catalogTable">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Tên Sản phẩm / Dịch vụ</th>
+                <th>Nhóm</th>
+                <th>Đơn giá Hiệu lực</th>
+                <th>Giá cũ (tham chiếu)</th>
+                <th>Tồn sẵn</th>
+                <th>Đang về (ETA)</th>
+                <th>Triển khai</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GEMINI AI CONFIG MODAL -->
+  <dialog id="aiSettingsDialog" class="modal-dialog">
+    <form method="dialog" class="modal-card" id="aiSettingsForm">
+      <div class="modal-header">
+        <h3>Cấu hình Gemini AI Engine (Tùy chọn)</h3>
+        <button type="button" class="icon-close" id="closeAiDialogBtn" aria-label="Đóng">✕</button>
+      </div>
+      <p class="muted small-note">
+        Hệ thống luôn tích hợp sẵn bộ phân tích <strong>Hybrid Rules</strong> chạy nội bộ không cần API Key. Nếu bạn nhập <strong>Gemini API Key</strong>, Agent sẽ dùng <code>google-genai</code> để trích xuất ngữ nghĩa nâng cao cho các email tự do phức tạp.
+      </p>
+      <div class="modal-body">
+        <label for="geminiKeyInput" class="field-label">Gemini API Key (lưu tạm trong phiên trình duyệt)</label>
+        <input type="password" id="geminiKeyInput" class="text-input" placeholder="AIzaSy..." autocomplete="off" />
+
+        <label for="geminiModelSelect" class="field-label mt-sm">Model Gemini</label>
+        <select id="geminiModelSelect" class="text-input">
+          <option value="gemini-3.7-flash">gemini-3.7-flash (Nhanh &amp; Cân bằng - Khuyên dùng)</option>
+          <option value="gemini-3.5-flash-lite">gemini-3.5-flash-lite (Tốc độ cao, chi phí thấp)</option>
+          <option value="gemini-3.1-pro-preview">gemini-3.1-pro-preview (Suy luận phức tạp)</option>
+          <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="clearAiKeyBtn">Xóa Key (Dùng Hybrid Rules)</button>
+        <button type="submit" class="btn btn-primary">Lưu cấu hình</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

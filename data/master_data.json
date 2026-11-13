@@ -1,0 +1,371 @@
+{
+  "company_name": "Công ty Cổ phần Công nghệ Minh An",
+  "price_list_version": "BG-2026.11 (Hiệu lực từ 01/11/2026)",
+  "products": [
+    {
+      "sku": "MA-LAP-01",
+      "name": "Laptop Doanh nghiệp Dell Latitude 5450 (Core Ultra 5 / 16GB / 512GB)",
+      "category": "Máy tính & Văn phòng",
+      "unit": "Máy",
+      "unit_price": 24500000,
+      "previous_price": 23200000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 35,
+      "incoming_stock": 20,
+      "incoming_eta_days": 7,
+      "deployment_days": 2,
+      "aliases": [
+        "dell latitude 5450",
+        "laptop dell 5450",
+        "latitude 5450",
+        "laptop doanh nghiep dell",
+        "laptop dell"
+      ],
+      "recommended_companions": ["MA-SVC-SETUP"],
+      "companion_min_qty": 5
+    },
+    {
+      "sku": "MA-LAP-02",
+      "name": "Laptop Cao cấp Lenovo ThinkPad X1 Carbon Gen 12",
+      "category": "Máy tính & Văn phòng",
+      "unit": "Máy",
+      "unit_price": 46900000,
+      "previous_price": 44500000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 8,
+      "incoming_stock": 10,
+      "incoming_eta_days": 10,
+      "deployment_days": 2,
+      "aliases": [
+        "thinkpad x1 carbon",
+        "lenovo thinkpad x1",
+        "thinkpad x1",
+        "x1 carbon gen 12",
+        "laptop lenovo x1"
+      ],
+      "recommended_companions": ["MA-SVC-SETUP"],
+      "companion_min_qty": 5
+    },
+    {
+      "sku": "MA-PC-01",
+      "name": "Máy trạm Desktop HP ProDesk 400 G9 + Màn hình 24 inch",
+      "category": "Máy tính & Văn phòng",
+      "unit": "Bộ",
+      "unit_price": 18800000,
+      "previous_price": 17900000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 22,
+      "incoming_stock": 15,
+      "incoming_eta_days": 5,
+      "deployment_days": 3,
+      "aliases": [
+        "hp prodesk 400",
+        "desktop hp prodesk",
+        "may tram hp",
+        "desktop hp",
+        "pc van phong hp",
+        "may tinh ban hp"
+      ],
+      "recommended_companions": ["MA-SVC-SETUP"],
+      "companion_min_qty": 5
+    },
+    {
+      "sku": "MA-SRV-01",
+      "name": "Máy chủ Dell PowerEdge R760xs (2U Rack Server / 64GB ECC)",
+      "category": "Hạ tầng & Máy chủ",
+      "unit": "Bộ",
+      "unit_price": 148000000,
+      "previous_price": 139000000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 2,
+      "incoming_stock": 3,
+      "incoming_eta_days": 14,
+      "deployment_days": 5,
+      "aliases": [
+        "dell poweredge r760xs",
+        "poweredge r760",
+        "server dell r760",
+        "may chu dell",
+        "server dell"
+      ],
+      "recommended_companions": ["MA-SVC-SRV"],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-NAS-01",
+      "name": "Thiết bị lưu trữ Synology NAS RackStation RS1221+ (kèm 4x8TB)",
+      "category": "Hạ tầng & Máy chủ",
+      "unit": "Bộ",
+      "unit_price": 58500000,
+      "previous_price": 55000000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 3,
+      "incoming_stock": 4,
+      "incoming_eta_days": 12,
+      "deployment_days": 4,
+      "aliases": [
+        "synology nas rs1221",
+        "nas synology",
+        "synology rs1221",
+        "thiet bi luu tru nas",
+        "nas rackstation"
+      ],
+      "recommended_companions": ["MA-SVC-SRV"],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-NET-01",
+      "name": "Tường lửa Fortinet FortiGate 60F (kèm License 1 năm)",
+      "category": "Mạng & Bảo mật",
+      "unit": "Bộ",
+      "unit_price": 28500000,
+      "previous_price": 26800000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 6,
+      "incoming_stock": 5,
+      "incoming_eta_days": 7,
+      "deployment_days": 3,
+      "aliases": [
+        "fortinet fortigate 60f",
+        "fortigate 60f",
+        "firewall fortigate",
+        "tuong lua fortigate",
+        "firewall fortinet"
+      ],
+      "recommended_companions": ["MA-SVC-NET"],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-NET-02",
+      "name": "Switch Cisco Catalyst 9200L 24-Port PoE+",
+      "category": "Mạng & Bảo mật",
+      "unit": "Bộ",
+      "unit_price": 42000000,
+      "previous_price": 39500000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 5,
+      "incoming_stock": 6,
+      "incoming_eta_days": 10,
+      "deployment_days": 3,
+      "aliases": [
+        "cisco catalyst 9200l",
+        "switch cisco 9200",
+        "cisco 9200",
+        "switch cisco 24 port",
+        "switch cisco"
+      ],
+      "recommended_companions": ["MA-SVC-NET"],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-WIFI-01",
+      "name": "Bộ phát Wi-Fi 6 Doanh nghiệp Aruba Instant On AP25",
+      "category": "Mạng & Bảo mật",
+      "unit": "Bộ",
+      "unit_price": 6800000,
+      "previous_price": 6400000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 40,
+      "incoming_stock": 30,
+      "incoming_eta_days": 5,
+      "deployment_days": 2,
+      "aliases": [
+        "aruba instant on ap25",
+        "wifi aruba ap25",
+        "aruba ap25",
+        "wifi aruba",
+        "bo phat wifi 6"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 10
+    },
+    {
+      "sku": "MA-CONF-01",
+      "name": "Hệ thống Hội nghị truyền hình Logitech Rally Bar",
+      "category": "Hội nghị & Hiển thị",
+      "unit": "Bộ",
+      "unit_price": 82000000,
+      "previous_price": 78000000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 4,
+      "incoming_stock": 3,
+      "incoming_eta_days": 9,
+      "deployment_days": 3,
+      "aliases": [
+        "logitech rally bar",
+        "rally bar",
+        "hoi nghi truyen hinh logitech",
+        "thiet bi hop truc tuyen"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-UPS-01",
+      "name": "Bộ lưu điện APC Smart-UPS 3000VA Rack Mount",
+      "category": "Hạ tầng & Máy chủ",
+      "unit": "Bộ",
+      "unit_price": 29500000,
+      "previous_price": 27800000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 7,
+      "incoming_stock": 5,
+      "incoming_eta_days": 6,
+      "deployment_days": 2,
+      "aliases": [
+        "apc smart-ups 3000va",
+        "ups apc 3000va",
+        "bo luu dien apc",
+        "ups apc"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-SW-M365",
+      "name": "Bản quyền Microsoft 365 Business Standard (1 năm / User)",
+      "category": "Phần mềm & Cloud",
+      "unit": "License",
+      "unit_price": 3450000,
+      "previous_price": 3200000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 999,
+      "incoming_stock": 0,
+      "incoming_eta_days": 0,
+      "deployment_days": 1,
+      "aliases": [
+        "microsoft 365 business standard",
+        "microsoft 365",
+        "m365 business",
+        "office 365",
+        "ban quyen m365"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-SVC-SETUP",
+      "name": "Dịch vụ Cài đặt chuẩn hóa hình ảnh, Join Domain & Bàn giao (Trọn gói)",
+      "category": "Dịch vụ Kỹ thuật",
+      "unit": "Gói",
+      "unit_price": 4500000,
+      "previous_price": 4000000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 999,
+      "incoming_stock": 0,
+      "incoming_eta_days": 0,
+      "deployment_days": 2,
+      "aliases": [
+        "dich vu cai dat",
+        "cai dat chuan hoa",
+        "join domain",
+        "cai dat ban giao"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-SVC-NET",
+      "name": "Dịch vụ Khảo sát, Cấu hình hệ thống Mạng, Switch & Firewall",
+      "category": "Dịch vụ Kỹ thuật",
+      "unit": "Gói",
+      "unit_price": 12000000,
+      "previous_price": 11000000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 999,
+      "incoming_stock": 0,
+      "incoming_eta_days": 0,
+      "deployment_days": 4,
+      "aliases": [
+        "dich vu cau hinh mang",
+        "cau hinh mang",
+        "trien khai firewall",
+        "cau hinh firewall",
+        "thi cong mang"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 1
+    },
+    {
+      "sku": "MA-SVC-SRV",
+      "name": "Dịch vụ Triển khai Máy chủ Rack, RAID, Ảo hóa & Backup",
+      "category": "Dịch vụ Kỹ thuật",
+      "unit": "Gói",
+      "unit_price": 18000000,
+      "previous_price": 16500000,
+      "price_effective_date": "2026-11-01",
+      "available_stock": 999,
+      "incoming_stock": 0,
+      "incoming_eta_days": 0,
+      "deployment_days": 5,
+      "aliases": [
+        "dich vu trien khai may chu",
+        "trien khai server",
+        "cau hinh server",
+        "lap dat server"
+      ],
+      "recommended_companions": [],
+      "companion_min_qty": 1
+    }
+  ],
+  "sales_reps": [
+    {
+      "id": "NVKD-01",
+      "name": "Nguyễn Minh Tuấn",
+      "email": "tuan.nm@minhan-tech.vn",
+      "specialty_categories": ["Hạ tầng & Máy chủ"],
+      "active_weekly_load": 28
+    },
+    {
+      "id": "NVKD-02",
+      "name": "Trần Thị Lan Anh",
+      "email": "anh.ttl@minhan-tech.vn",
+      "specialty_categories": ["Mạng & Bảo mật"],
+      "active_weekly_load": 29
+    },
+    {
+      "id": "NVKD-03",
+      "name": "Lê Hoàng Nam",
+      "email": "nam.lh@minhan-tech.vn",
+      "specialty_categories": ["Máy tính & Văn phòng"],
+      "active_weekly_load": 31
+    },
+    {
+      "id": "NVKD-04",
+      "name": "Phạm Thu Hương",
+      "email": "huong.pt@minhan-tech.vn",
+      "specialty_categories": ["Hội nghị & Hiển thị"],
+      "active_weekly_load": 27
+    },
+    {
+      "id": "NVKD-05",
+      "name": "Vũ Đức Thịnh",
+      "email": "thinh.vd@minhan-tech.vn",
+      "specialty_categories": ["Phần mềm & Cloud", "Dịch vụ Kỹ thuật"],
+      "active_weekly_load": 30
+    },
+    {
+      "id": "NVKD-06",
+      "name": "Đặng Ngọc Mai",
+      "email": "mai.dn@minhan-tech.vn",
+      "specialty_categories": ["Máy tính & Văn phòng", "Phần mềm & Cloud"],
+      "active_weekly_load": 29
+    }
+  ],
+  "policy": {
+    "sales_rep_max_discount_pct": 5.0,
+    "manager_max_discount_pct": 12.0,
+    "director_approval_contract_threshold": 800000000,
+    "sales_manager_name": "Ông Nguyễn Quốc Bảo (Trưởng phòng Kinh doanh)",
+    "director_name": "Bà Trần Hải Yến (Ban Giám đốc)",
+    "default_clarification_sla_hours": 4,
+    "follow_up_hours": 24,
+    "volume_tiers": [
+      { "min_amount": 0, "max_amount": 100000000, "recommended_max_pct": 2.0, "label": "Đơn nhỏ (< 100 triệu)" },
+      { "min_amount": 100000000, "max_amount": 300000000, "recommended_max_pct": 4.0, "label": "Đơn tiêu chuẩn (100 - 300 triệu)" },
+      { "min_amount": 300000000, "max_amount": 700000000, "recommended_max_pct": 6.0, "label": "Đơn trung bình lớn (300 - 700 triệu)" },
+      { "min_amount": 700000000, "max_amount": 999999999999, "recommended_max_pct": 10.0, "label": "Đơn dự án (>= 700 triệu)" }
+    ]
+  }
+}
+
